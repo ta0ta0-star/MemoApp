@@ -2,7 +2,6 @@ import { createIconSetFromIcoMoon } from '@expo/vector-icons'
 import { useFonts } from 'expo-font'
 import React from 'react'
 
-import fontData from '../../assets/fonts/icomoon.ttf'
 import fontSelection from '../../assets/fonts/selection.json'
 
 const CustomIcon = createIconSetFromIcoMoon(
@@ -20,7 +19,7 @@ interface Props {
 const Icon = (props: Props): React.JSX.Element | null => {
     const {name, size, color} = props
     const [fontLoaded] = useFonts({
-        Icomoon: fontData
+        Icomoon: require('../../assets/fonts/icomoon.ttf')
     })
     if (!fontLoaded) {
         return null
