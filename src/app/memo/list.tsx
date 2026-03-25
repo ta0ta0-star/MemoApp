@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { router, useNavigation } from 'expo-router'
 
-
 import MemoListItem from '../../components/MemoListItem'
 import CircleButton from '../../components/CircleButton'
 import Icon from '../../components/icon'
