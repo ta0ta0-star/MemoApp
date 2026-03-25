@@ -12,7 +12,7 @@ const Layout = (): React.JSX.Element | null => {
 
     return <Stack screenOptions={{
         headerStyle: {
-            backgroundColor: '#467FD3'
+            backgroundColor: '#467FD3',
         },
         headerTintColor: '#ffffff',
         headerTitle: 'Memo App',
@@ -20,7 +20,8 @@ const Layout = (): React.JSX.Element | null => {
         headerTitleStyle: {
             fontSize: 22,
             fontWeight: 'bold'
-        }
+        },
+        headerTitleAlign: 'center'
     }} />
 }
 
