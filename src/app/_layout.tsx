@@ -1,4 +1,4 @@
-import { Slot } from 'expo-router'
+import { Stack } from 'expo-router'
 import React from 'react'
 import { useFonts } from 'expo-font'
 
@@ -10,7 +10,18 @@ const Layout = (): React.JSX.Element | null => {
 
     if (!loaded) return null
 
-    return <Slot />
+    return <Stack screenOptions={{
+        headerStyle: {
+            backgroundColor: '#467FD3'
+        },
+        headerTintColor: '#ffffff',
+        headerTitle: 'Memo App',
+        headerBackTitle: 'Back',
+        headerTitleStyle: {
+            fontSize: 22,
+            fontWeight: 'bold'
+        }
+    }} />
 }
 
 export default Layout
