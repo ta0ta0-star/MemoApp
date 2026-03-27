@@ -1,9 +1,10 @@
 import React from 'react'
 import {
-    View, StyleSheet, TextInput, KeyboardAvoidingView
+    View, StyleSheet, TextInput
 } from 'react-native'
 import { router } from 'expo-router'
 
+import KeyboardAvoidingView from '../../components/KeyboardAvoidingView'
 import CircleButton from '../../components/CircleButton'
 import Icon from '../../components/icon'
 
@@ -13,11 +14,11 @@ const handlePress = (): void => {
 
 const Edit = (): React.JSX.Element => {
     return (
-        <KeyboardAvoidingView behavior='height' style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
             <View style={styles.inputContainer}>
                 <TextInput multiline style={styles.input} value={'買い物\nリスト'} />
             </View>
-            <CircleButton onPress={handlePress}>
+            <CircleButton onPress={handlePress} style={{ bottom: 40, top: 'auto' }}>
                 <Icon name='check' size={40} color='#ffffff' />
             </CircleButton>
         </KeyboardAvoidingView>

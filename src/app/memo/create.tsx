@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import {
-    View, StyleSheet, TextInput, KeyboardAvoidingView
+    View, StyleSheet, TextInput
 } from 'react-native'
 import { router } from 'expo-router'
 import { collection, addDoc, Timestamp } from 'firebase/firestore'
 
+import KeyboardAvoidingView from '../../components/KeyboardAvoidingView'
 import CircleButton from '../../components/CircleButton'
 import Icon from '../../components/icon'
 import { db, auth } from '../../config'
@@ -28,16 +29,17 @@ const handlePress = (bodyText: string): void => {
 const Create = (): React.JSX.Element => {
     const [bodyText, setBodyText] = useState('')
     return (
-        <KeyboardAvoidingView behavior='height' style={styles.container}>
+        <KeyboardAvoidingView style={styles.container}>
             <View style={styles.inputContainer}>
                 <TextInput
                 multiline
                 style={styles.input}
                 value={bodyText}
                 onChangeText={(text) => {setBodyText(text)}}
+                autoFocus
                 />
             </View>
-            <CircleButton onPress={() => { handlePress(bodyText) }} style={{ bottom: 120, top: 'auto' }}>
+            <CircleButton onPress={() => { handlePress(bodyText) }} style={{ bottom: 40, top: 'auto' }}>
                 <Icon name='check' size={40} color='#ffffff' />
             </CircleButton>
         </KeyboardAvoidingView>
