@@ -47,6 +47,7 @@ const Edit = (): React.JSX.Element => {
                 style={styles.input}
                 value={bodyText}
                 onChangeText={(text) => { setBodyText(text) }}
+                autoFocus
                 />
             </View>
             <CircleButton onPress={() => { handlePress(id, bodyText) }} style={{ bottom: 40, top: 'auto' }}>
