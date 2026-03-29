@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { View, StyleSheet } from 'react-native'
 import { router, useNavigation } from 'expo-router'
 import { collection, onSnapshot, query, orderBy } from 'firebase/firestore'
@@ -8,12 +8,14 @@ import CircleButton from '../../components/CircleButton'
 import Icon from '../../components/icon'
 import LogOutButton from '../../components/LogOutButton'
 import { db, auth } from '../../config'
+import { type Memo } from '../../../types/memo'
 
 const handlePress = (): void => {
     router.push('/memo/create')
 }
 
 const List = (): React.JSX.Element => {
+    const [memos, setMemos] = useState<Memo[]>([])
     const navigation = useNavigation()
     useEffect(() => {
         navigation.setOptions({
@@ -25,9 +27,17 @@ const List = (): React.JSX.Element => {
         const ref = collection(db, `users/${auth.currentUser.uid}/memos`)
         const q = query(ref, orderBy('updatedAt', 'desc'))
         const unsubscribe = onSnapshot(q, (snapshot) => {
+            const remoteMemos: Memo[] = []
             snapshot.forEach((doc) => {
                 console.log('memo', doc.data())
+                const { bodyText, updatedAt } = doc.data()
+                remoteMemos.push({
+                    id: doc.id,
+                    bodyText,
+                    updatedAt
+                })
             })
+            setMemos(remoteMemos)
         })
         return unsubscribe
     }, [])
@@ -35,9 +45,7 @@ const List = (): React.JSX.Element => {
         <View style={styles.container}>
             <View>
                 <View>
-                    <MemoListItem />
-                    <MemoListItem />
-                    <MemoListItem />
+                    {memos.map((memo) => <MemoListItem memo={memo} />)}
                 </View>
             </View>
             <CircleButton onPress={handlePress}>
