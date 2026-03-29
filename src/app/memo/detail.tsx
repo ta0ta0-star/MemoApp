@@ -1,6 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, ScrollView } from 'react-native'
-import { router } from 'expo-router'
+import { router, useLocalSearchParams } from 'expo-router'
 
 import CircleButton from '../../components/CircleButton'
 import Icon from '../../components/icon'
@@ -10,6 +10,8 @@ const handlePress = (): void => {
 }
 
 const Detail = (): React.JSX.Element => {
+    const { id } = useLocalSearchParams()
+    console.log(id)
     return (
         <View style={styles.container}>
             <View style={styles.memoHeader}>
